@@ -1,0 +1,82 @@
+﻿@model IEnumerable<covid_19.Models.PeopleWithCovid>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Coronavirus Status</h4>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NewCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalDeaths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalRecovered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeriousCritical)
+            </th>
+            <th>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewCases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalDeaths)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalRecovered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveCases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeriousCritical)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a><span> |</span>
+                <a asp-action="Delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?')" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@model covid_19.Models.PeopleWithCovid
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PeopleWithCovid</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalCases" class="control-label"></label>
+                <input asp-for="TotalCases" class="form-control" />
+                <span asp-validation-for="TotalCases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewCases" class="control-label"></label>
+                <input asp-for="NewCases" class="form-control" />
+                <span asp-validation-for="NewCases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalDeaths" class="control-label"></label>
+                <input asp-for="TotalDeaths" class="form-control" />
+                <span asp-validation-for="TotalDeaths" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalRecovered" class="control-label"></label>
+                <input asp-for="TotalRecovered" class="form-control" />
+                <span asp-validation-for="TotalRecovered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActiveCases" class="control-label"></label>
+                <input asp-for="ActiveCases" class="form-control" />
+                <span asp-validation-for="ActiveCases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeriousCritical" class="control-label"></label>
+                <input asp-for="SeriousCritical" class="form-control" />
+                <span asp-validation-for="SeriousCritical" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                </div>
+                <div class="form-group col-md-6">
+                    <a asp-action="Index" class="btn btn-secondary btn-block">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
