@@ -22,14 +22,13 @@ namespace covid_19.Controllers
         // GET: PeopleWithCovids
         public async Task<IActionResult> Index(string searchString)
         {
-            ViewData["CurrentFilter"] = searchString;
             var people = from s in _context.PeopleWithCovids
                          select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 people = people.Where(p => p.Country.Contains(searchString));
             }
-            return View(await _context.PeopleWithCovids.ToListAsync());
+            return View(await people.ToListAsync());
         }
 
         // GET: PeopleWithCovids/Details/5
